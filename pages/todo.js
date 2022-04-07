@@ -5,7 +5,7 @@ export default function Todo({data}) {
     return (
       <div className="flex justify-center flex-col px-20">
         <Link href={`/`}>Home </Link>
-        <table class="table-auto">
+        <table className="table-auto">
             <thead></thead>
             <tbody className="border-2">           
                 <tr><td>Title : </td><td><h2 className="font-bold">{data.title}</h2></td></tr>
