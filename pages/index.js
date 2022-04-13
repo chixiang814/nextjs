@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import ToDoContainer from '../components/ToDoContainer'
 import Pagination from '../components/Pagination'
-import {useState} from "react"
+import {useState, useCallback} from "react"
 import Router from 'next/router'
+import Submit from '../components/Submit'
+
 
 export default function Home({initData, totalPosts}) {
   const [data, setData] = useState(initData);
@@ -11,27 +13,13 @@ export default function Home({initData, totalPosts}) {
   const [currentPage, setCurrentPage] = useState(1);
   const postLimit = 5;
 
-  const setTitleHandler = (elem)=>{
+  const setTitleHandler = useCallback((elem)=>{
     setTitle(elem.target.value)
-  }
+  }, [setTitle])
 
-  const setContentHandler = (elem)=>{
+  const setContentHandler = useCallback((elem)=>{
     setContent(elem.target.value)
-  }
-
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-    const response = await fetch('http://localhost:3000/api/post', {
-      method: 'POST',
-      body: JSON.stringify({title, content}),
-      headers: {
-        'Content-Type' : 'application/json'
-      }
-    })
-
-    const data = await response.json()
-    Router.push("/")
-  }
+  },[setContent])
 
   const deleteHandler = async (id) => {
     const response = await fetch('http://localhost:3000/api/post',{
@@ -59,14 +47,9 @@ export default function Home({initData, totalPosts}) {
         <meta name="description" content='To Do List App' />
       </Head>
       
-      <main className="" onSubmit={onSubmitHandler}>
+      <main>
         <h2 className="font-bold text-5xl italic">To Do List</h2>
-        <form className='my-2' > 
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={title} id="title" type="text" placeholder="Insert Title..." onChange={setTitleHandler} />
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={content} id="content" type="text" placeholder="Insert Content..." onChange={setContentHandler} />
-          <button className='rounded bg-blue-700 text-white p-2 my-2 hover:bg-blue-900'>Insert</button>
-        </form>
-      
+        <Submit title={title} content={content} setTitleHandler={setTitleHandler} setContentHandler={setContentHandler} />
         <ToDoContainer data={data} deleteHandler={deleteHandler} />
         <Pagination 
           postsPerPage={postLimit}

@@ -13,7 +13,7 @@ export default ({
         <div>
           <p className='text-sm text-gray-700'>
             Showing
-            <span className='font-medium'>{currentPage * postsPerPage - 10}</span>
+            <span className='font-medium'>{currentPage * postsPerPage - postsPerPage}</span>
             to
             <span className='font-medium'> {currentPage * postsPerPage} </span>
             of
