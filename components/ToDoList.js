@@ -56,7 +56,7 @@ export default ({data, deleteHandler}) => {
                 <div className="flex justify-end ml-auto">
                     {!editMode && <button className='bg-red-500 text-white rounded hover:bg-red-900 w-20 ml-auto mr-2' onClick={()=>deleteHandler(data.id)}> Delete </button>}
                     {!editMode && <button className="bg-green-500 text-white rounded hover:bg-green-900 w-20 ml-auto mr-2" onClick={()=>editModeHandler(true)}>Edit</button>}
-                    {editMode && <button className="bg-blue-500 text-white rounded hover:bg-blue-900 w-20 mr-2 mt-2" onClick={()=>updateHandler()}>Done</button>}
+                    {editMode && <button className="bg-blue-500 text-white rounded hover:bg-blue-900 w-20 mr-2 mt-2" onClick={()=>updateHandler()}>Confirm</button>}
                     {editMode && <button className="bg-red-500 text-white rounded hover:bg-red-900 w-20 mt-2" onClick={cancelUpdateHandler}>Cancel</button>}
                 </div>
             </div>

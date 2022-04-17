@@ -2,7 +2,7 @@ import Head from 'next/head'
 import ToDoContainer from '../components/ToDoContainer'
 import Pagination from '../components/Pagination'
 import {useState, useCallback} from "react"
-import Router from 'next/router'
+import { useRouter } from 'next/dist/client/router'
 import Submit from '../components/Submit'
 
 
@@ -12,6 +12,7 @@ export default function Home({initData, totalPosts}) {
   const [content, setContent] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const postLimit = 5;
+  const router = useRouter();
 
   const setTitleHandler = useCallback((elem)=>{
     setTitle(elem.target.value)
@@ -29,7 +30,7 @@ export default function Home({initData, totalPosts}) {
         'Content-Type' : 'appication/json'
       }
     })
-    Router.push("/")
+    router.push("/")
   }
 
   const fetchData = async(page, pageFront) => {
