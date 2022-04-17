@@ -16,8 +16,8 @@ export default React.memo(({title, content, setTitleHandler, setContentHandler})
       }
     return (
     <form className='my-2' onSubmit={onSubmitHandler}> 
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={title} id="title" type="text" placeholder="Insert Title..." onChange={setTitleHandler} />
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={content} id="content" type="text" placeholder="Insert Content..." onChange={setContentHandler} />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={title} id="title" type="text" placeholder="Insert Title..." onChange={setTitleHandler} />
+          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={content} id="content" type="text" placeholder="Insert Content..." onChange={setContentHandler} />
         <button className='rounded bg-blue-700 text-white p-2 my-2 hover:bg-blue-900'>Insert</button>
     </form>
   )

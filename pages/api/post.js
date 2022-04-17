@@ -1,7 +1,7 @@
-import { sqlQuery, insertToDo, deleteToDo } from "../../lib/db";
+import { sqlQuery, insertToDo, deleteToDo, updateToDo } from "../../lib/db";
 
 const handler = async  (req, res) => {
-    try {    
+    try {
         if (req.method === "GET") {
             const {pageIndex} = req.query;
             const result = await sqlQuery(`Select * from todo.list LIMIT 5 OFFSET ${pageIndex*5}`)
@@ -16,6 +16,10 @@ const handler = async  (req, res) => {
         } else if (req.method === 'DELETE') {
             await deleteToDo(req.body);
             return res.status(200).json({message:"deleted"});
+        } else if (req.method === 'PUT') {
+            const data = JSON.parse(req.body)
+            await updateToDo(data.id, data.data);
+            return res.status(200).json({message:"updated"});
         }
     } catch (error) {
         return res.status(500).json({message: error.message})
